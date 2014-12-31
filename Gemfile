@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'steam-api'
 gem 'mechanize'
 gem 'rest-client'
+gem 'pg'
+gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'bootstrap-sass', '~> 3.3.1'
 
