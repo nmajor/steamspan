@@ -15,15 +15,17 @@ class PagesController < ApplicationController
     rescue Steam::SteamError, Steam::JSONError
       redirect_to :back, :alert => 'Could not find user with that name'
     else
-    puts 'blahman'+steam_id.to_s
 
       sql = "SELECT appid, beat_time FROM games WHERE appid IN (#{game_ids.join(',')})"
       games_with_beat_time = Hash[ActiveRecord::Base.connection.exec_query(sql).rows]
 
-      puts 'happy1 '+games.inspect
       @playtime_differential = 0
       games.each do |x|
-        puts 'happy2 '+x.inspect
+        unless games_with_beat_time[x["appid"]]
+          g = Game.find_by_appid( x["appid"] )
+          g.get_beat_time
+          games_with_beat_time[x["appid"]] = g.beat_time
+        end
         playtime_difference = ( games_with_beat_time[x["appid"]] - x["playtime_forever"] )
         @playtime_differential += ( games_with_beat_time[x["appid"]] - x["playtime_forever"] ) if playtime_difference > 0
       end
