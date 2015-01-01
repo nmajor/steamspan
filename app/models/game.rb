@@ -8,7 +8,11 @@ class Game < ActiveRecord::Base
   end
 
   def get_beat_time
-    puts "Game: "+name
+    return true if !self.beat_time.blank?
+    get_beat_time!
+  end
+
+  def get_beat_time!
     url = "http://www.howlongtobeat.com/search_main.php?t=games&page=1&sorthead=popular&sortd=Normal%20Order&plat=&detail=0"
     data = {queryString: self.game_name}
     response = RestClient.send(:post, url, data)
