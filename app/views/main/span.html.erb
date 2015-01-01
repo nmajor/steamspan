@@ -5,6 +5,10 @@
   </div>
   <div class="secondary-text">It would take you...</div>
   <div class="playtime-differential">
+    <%= minutes_to_hours @playtime_differential %> coninuous hours
+  </div>
+  <div class="secondary-text">- or -</div>
+  <div class="playtime-differential">
     <%= minutes_to_words @playtime_differential %>
   </div>
   <div class="secondary-text">of continuous gameplay to complete your steam library</div>

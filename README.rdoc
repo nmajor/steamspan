@@ -31,6 +31,7 @@ export rvmsudo_secure_path=1
 rvmsudo passenger start --port 80 --user deployer --user=deployer --environment production
 
 
+git pull origin master
 RAILS_ENV=production rake db:migrate
 RAILS_ENV=production rake assets:precompile
 export rvmsudo_secure_path=1
