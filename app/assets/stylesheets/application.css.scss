@@ -6,7 +6,7 @@ body { background: #1b2638; }
 
 header { text-align: center; background: #161920; color: #b7b7b7; padding-bottom: 30px; }
 main { color: #c6d4df; margin-top: 50px; }
-input[type='text'] { color: black; }
+input[type='text'], input[type='number'], input[type='submit'], textarea { color: black; }
 
 .divider-bars { background: #141e2c; opacity: 0.85; padding: 50px; }
 .or-bar { margin: 30px 0; text-align: center; }
