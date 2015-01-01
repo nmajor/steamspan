@@ -69,6 +69,6 @@ class DistributionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def distribution_params
-      params.require(:distribution).permit(:description, :minutes, :image)
+      params.require(:distribution).permit(:description, :minutes, :image, :remote_image_url)
     end
 end
