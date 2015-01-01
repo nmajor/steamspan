@@ -1,0 +1,17 @@
+<section class="divider-bars steam-login">
+  <img src="http://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_small.png">
+</section>
+
+<div class="or-bar">- OR -</div>
+
+<section class="divider-bars">
+  <%= form_tag span_path do %>
+    <h4>Enter Steam ID:</h4>
+    <div class="steam-id">
+      <span class="steam-url">http://steamcommunity.com/id/</span><%= text_field_tag :steam_user %>
+      <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </button>
+    </div>
+  <% end %>
+</section>

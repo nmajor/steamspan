@@ -1,0 +1,23 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body { background: #1b2638; }
+
+header { text-align: center; background: #161920; color: #b7b7b7; padding-bottom: 30px; }
+main { color: #c6d4df; margin-top: 50px; }
+input[type='text'] { color: black; }
+
+.divider-bars { background: #141e2c; opacity: 0.85; padding: 50px; }
+.or-bar { margin: 30px 0; text-align: center; }
+.divider-bars h4 { margin: 0 0 20px 0; text-align: center; }
+.steam-login { text-align: center; }
+.steam-url { margin-right: 5px; }
+.steam-id {
+  text-align: center;
+  input { height: 29px; }
+}
+.steam-screen-name { font-size: 30px; }
+.day-words { margin: 0 10px 0 0; }
+.hour-words { margin: 0 10px 0 10px; }
+.minute-words { margin: 0 0 0 10px; }

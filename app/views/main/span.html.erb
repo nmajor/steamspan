@@ -1,0 +1,12 @@
+<section class="divider-bars">
+  <div class="steam-screen-name">
+    <img src="http://lorempixel.com/50/50"> Steam Screenname
+  </div>
+  <div>
+    <%= minutes_to_words @playtime_differential %>
+  </div>
+  <div>In this time you could</div>
+  <div>
+    <%= render 'shared/distribution', :distribution => @distribution %>
+  </div>
+</section>

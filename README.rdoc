@@ -28,17 +28,9 @@ Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
 
+rvmsudo passenger start --port 80 --user deployer --user=deployer --environment production
+rvmsudo passenger start --port 80 --user deployer --user=deployer --environment production
 
-require 'steam-api'
-Steam.apikey = '1C6CC8CE1C1F16D68DD8096CF9DB9390'
-Steam::Player.owned_games(76561197993653488)["games"].sort_by{|x| x["playtime_forever"]}
-Steam::UserStats.game_schema(500)
-Steam::Apps.get_all
 
-Steam::Player.owned_games(76561197993653488)["games"].each do |a|
-  g = Game.find_by_appid(a["appid"])
-  next unless g
-  next unless g.beat_time == nil
-  g.get_beat_time
-  sleep 3
-end
+
+RAILS_ENV=production rake assets:precompile

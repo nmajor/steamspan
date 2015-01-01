@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @distribution.description %>
+</p>
+
+<p>
+  <strong>Minutes:</strong>
+  <%= @distribution.minutes %>
+</p>
+
+<p>
+  <strong>Image:</strong>fjdkls
+  <%= image_tag @distribution.image_url %>
+</p>
+
+<%= link_to 'Edit', edit_distribution_path(@distribution) %> |
+<%= link_to 'Back', distributions_path %>

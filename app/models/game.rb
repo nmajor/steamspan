@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
-  def self.get_beat_times
-
+  def self.create_with_appid aid
+    "blah"
   end
 
   def name

@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class MainController < ApplicationController
 
   def home
   end
@@ -30,10 +30,10 @@ class PagesController < ApplicationController
         @playtime_differential += ( games_with_beat_time[x["appid"]] - x["playtime_forever"] ) if playtime_difference > 0
       end
 
-      @playtime_actual = games.map { |h| h["playtime_forever"] }.sum / 60
-      @playtime_total = Game.where(:appid => game_ids).sum(:beat_time) / 60
-      @playtime_differential = @playtime_differential / 60
-
+      @playtime_actual = games.map { |h| h["playtime_forever"] }.sum
+      @playtime_total = Game.where(:appid => game_ids).sum(:beat_time)
+      @playtime_differential = @playtime_differential
+      @distribution = Distribution.get_within_limits @playtime_differential
 
     end
   end
