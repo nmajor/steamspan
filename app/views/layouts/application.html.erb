@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>
-      <%= content_for?(:title) ? yield(:title) : 'Steamspan' %>
+      <%= content_for?(:title) ? yield(:title) : 'STEAMLIFE' %>
     </title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <header class="row">
-      <h1>Steam Life</h1>
-      <div>How long would it take to counquer your steam library</div>
+      <a href="<%= root_path %>" class="logo"><h1>STEAM<span class="alt-color">LEFT</span></h1></a>
+      <div>How much gametime left to conquer your Steam library.</div>
     </header>
     <main class="container wrap">
       <div class="row">
