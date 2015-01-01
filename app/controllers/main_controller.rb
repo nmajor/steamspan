@@ -20,7 +20,7 @@ class MainController < ApplicationController
 
       @playtime_differential = 0
       games.each do |x|
-        unless games_with_beat_time[x["appid"]]
+        if !games_with_beat_time[x["appid"]]
           g = Game.find_by_appid( x["appid"] )
           g.get_beat_time
           games_with_beat_time[x["appid"]] = g.beat_time

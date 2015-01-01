@@ -27,10 +27,13 @@ Things you may want to cover:
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
-
-rvmsudo passenger start --port 80 --user deployer --user=deployer --environment production
+export rvmsudo_secure_path=1
 rvmsudo passenger start --port 80 --user deployer --user=deployer --environment production
 
 
 RAILS_ENV=production rake db:migrate
 RAILS_ENV=production rake assets:precompile
+export rvmsudo_secure_path=1
+rvmsudo passenger restart --port 80
+
+RAILS_ENV=production rvmsudo rails c
