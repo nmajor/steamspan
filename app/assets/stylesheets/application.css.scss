@@ -25,8 +25,8 @@ input[type='text'], input[type='number'], input[type='submit'], textarea { color
 .split-dividers{ margin: 15px 0; font-size: 15px; }
 .dist-image { margin-right: 25px; }
 .clear { clear: both; }
-.playtime-differential { font-size: 42px; color: #6c7951; font-weight: bold; line-height: 43px; }
-.playtime-differential-words { font-size: 20px; margin-bottom: 26px; }
-.dist-divider { font-size: 22px; cursor: pointer; cursor: hand; }
+.playtime-differential { font-size: 42px; color: #6c7951; font-weight: bold; line-height: 48px; }
+.playtime-differential-words { font-size: 20px; margin-bottom: 26px; font-weight: 100; }
+.dist-divider { font-size: 22px; cursor: pointer; cursor: hand; font-weight: 200; }
 .hidden { display: none; }
 .secondary-text { font-size: 18px; margin: 12px 0; }
