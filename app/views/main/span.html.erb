@@ -3,14 +3,14 @@
   <div class="steam-screen-name">
     <%= image_tag @steam_avatar %> <%= @steam_personaname %>
   </div>
-  <div class="secondary-text">It will take you</div>
+  <div class="secondary-text">It would take you...</div>
   <div class="playtime-differential">
     <%= minutes_to_words @playtime_differential %>
   </div>
-  <div class="secondary-text">to complete your steam library</div>
+  <div class="secondary-text">of continuous gameplay to complete your steam library</div>
 </section>
 
-<div class="split-dividers center">In this time you could</div>
+<div class="split-dividers center">IN THIS TIME YOU COULD...</div>
 
 <section class="divider-bars dist-divider">
   <%= render 'shared/distribution', :distribution => @distribution, :playtime_differential => @playtime_differential %>

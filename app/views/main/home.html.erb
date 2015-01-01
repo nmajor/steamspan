@@ -5,7 +5,7 @@
 <div class="or-bar">- OR -</div>
 
 <section class="divider-bars">
-  <%= form_tag span_path do %>
+  <%= form_tag span_by_name_path, :method => 'get' do %>
     <h4>Enter Steam ID:</h4>
     <div class="steam-id">
       <span class="steam-url">http://steamcommunity.com/id/</span><%= text_field_tag :steam_user %>

@@ -3,11 +3,16 @@ class MainController < ApplicationController
   def home
   end
 
+  def span_by_name
+    steam_user = params[:steam_user]
+    steam_id = Steam::User.vanity_to_steamid(steam_user)
+    redirect_to span_path(:steam_id => steam_id)
+  end
+
   def span
 
-    steam_user = params[:steam_user]
+    steam_id = params[:steam_id]
     begin
-      steam_id = Steam::User.vanity_to_steamid(steam_user)
       games = Steam::Player.owned_games(steam_id)["games"]
       # games = Steam::Player.owned_games(76561197993653488)["games"]
       raise Steam::SteamError if games.nil?

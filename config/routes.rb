@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'main#home'
-  post 'span' => 'main#span'
+  get 'span/:steam_id' => 'main#span', as: :span
+  get 'span_by_name' => 'main#span_by_name'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
