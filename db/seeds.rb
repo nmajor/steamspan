@@ -10,3 +10,4 @@
 Steam::Apps.get_all.each do |app|
   Game.find_or_create_by(:game_name => app["name"], :appid => app["appid"])
 end
+

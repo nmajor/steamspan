@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$('.dist-divider').click(function(){
+  var url = '/distributions/random';
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: "json",
+    contentType: "text/html",
+    data: { playtime_differential: $('#playtime-differential').html() },
+    success: function(data){
+      $('.dist-divider').html(data.distribution_html);
+    },
+    error: function(){
+      console.log('error man');
+    }
+  });
+});

@@ -15,7 +15,6 @@ class MainController < ApplicationController
     rescue Steam::SteamError, Steam::JSONError
       redirect_to :back, :alert => 'Could not find user with that name'
     else
-
       sql = "SELECT appid, beat_time FROM games WHERE appid IN (#{game_ids.join(',')})"
       games_with_beat_time = Hash[ActiveRecord::Base.connection.exec_query(sql).rows]
 
@@ -34,6 +33,10 @@ class MainController < ApplicationController
       @playtime_total = Game.where(:appid => game_ids).sum(:beat_time)
       @playtime_differential = @playtime_differential
       @distribution = Distribution.get_within_limits @playtime_differential
+
+      steam_user = Steam::User.summary(steam_id)
+      @steam_avatar = Steam::User.summary(steam_id)["avatarmedium"]
+      @steam_personaname = steam_user["personaname"]
 
     end
   end

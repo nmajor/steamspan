@@ -1,6 +1,16 @@
 class DistributionsController < ApplicationController
   before_action :set_distribution, only: [:show, :edit, :update, :destroy]
 
+  def random
+    @playtime_differential = params[:playtime_differential].to_i
+    @distribution = Distribution.get_within_limits @playtime_differential
+    @distribution_html = render_to_string :partial => "shared/distribution", :locals => { :distribution => @distribution, :playtime_differential => @playtime_differential }
+    respond_to do |format|
+      format.html { render layout: false }
+      format.json { render json: { :playtime_differential => @playtime_differential, :distribution_html => @distribution_html } }
+    end
+  end
+
   # GET /distributions
   # GET /distributions.json
   def index
