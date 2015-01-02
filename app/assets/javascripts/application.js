@@ -31,3 +31,4 @@ $('.dist-divider').click(function(){
     }
   });
 });
+$('.close').click(function(){ $(this).parent().remove() })

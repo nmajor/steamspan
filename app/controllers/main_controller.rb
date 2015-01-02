@@ -15,6 +15,12 @@ class MainController < ApplicationController
 
   def span_by_name
     steam_user = params[:steam_user]
+
+    if steam_user.blank?
+      redirect_to root_path, :alert => 'Hey, you need to enter a Steam id.'
+      return
+    end
+
     begin
       steam_id = Steam::User.vanity_to_steamid(steam_user)
     rescue Steam::SteamError

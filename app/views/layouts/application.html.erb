@@ -4,11 +4,10 @@
     <title><%= content_for?(:title) ? yield(:title) : 'STEAMLIFE' %></title>
     <meta property="og:title" content="STEAMLIFE" />
     <meta property="og:description" content="<%= @share_desc %>" />
-    <meta property="og:image" content="<%= @steam_avatar_big %>" />
+    <meta property="og:image" content="<%= image_url 'steamleft_logo.png' %>" />
 
-    <meta name="twitter:title" content="STEAMLIFE" />
-    <meta name="twitter:description" content="<%= @share_desc %>" />
-    <meta name="twitter:image" content="<%= @steam_avatar_big %>" />
+    <meta name="twitter:title" content="<%= @share_desc %>" />
+    <meta name="twitter:image" content="<%= image_url 'steamleft_logo.png' %>" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
