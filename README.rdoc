@@ -40,5 +40,4 @@ rvmsudo rails c production
 
 Social sharing options
 load all beat_times for all games in database
-404 page
 

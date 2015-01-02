@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <%= meta_tags %>
+    <style>
+      html {
+        height: 100%;
+        background: #fff;
+      }
+
+      body {
+          font-family: Helvetica, Arial, Sans-Serif;
+          font-size: 14px;
+      }
+
+      .error_container {
+          display: block;
+          margin: auto;
+          margin: 10% auto 0 auto;
+          width: 40%;
+      }
+
+      .error_container .error {
+          display: block;
+          text-align: center;
+      }
+
+      .error_container .error img {
+          display: block;
+          margin: 0 auto 15px auto;
+      }
+
+      .error_container .message > * {
+          display: block;
+      }
+
+      .error_container .message strong {
+          font-weight: bold;
+          color: #f00;
+      }
+
+      .error_container .contact_info {
+          display: block;
+          text-align: center;
+          margin: 25px 0 0 0;
+      }
+
+      .error_container .contact_info a {
+          display: inline-block;
+          margin: 0;
+          opacity: 0.4;
+          transition: opacity 0.15s ease;
+      }
+
+      .error_container .contact_info a:hover {
+          opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error_container">
+      fdasfa
+      <%= yield %>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+

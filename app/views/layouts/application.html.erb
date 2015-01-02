@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      <%= content_for?(:title) ? yield(:title) : 'STEAMLIFE' %>
-    </title>
+    <title><%= content_for?(:title) ? yield(:title) : 'STEAMLIFE' %></title>
+    <meta property="og:title" content="STEAMLIFE" />
+    <meta property="og:description" content="<%= @share_desc %>" />
+    <meta property="og:image" content="<%= @steam_avatar_big %>" />
+
+    <meta name="twitter:title" content="STEAMLIFE" />
+    <meta name="twitter:description" content="<%= @share_desc %>" />
+    <meta name="twitter:image" content="<%= @steam_avatar_big %>" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -30,6 +35,7 @@
       </main>
     </div>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5269f8ce18c4792b" async="async"></script>
   </body>
 </html>
