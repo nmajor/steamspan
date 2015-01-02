@@ -58,7 +58,7 @@ class MainController < ApplicationController
       @playtime_total = Game.where(:appid => game_ids).sum(:beat_time)
       @playtime_differential = @playtime_differential
       @distribution = Distribution.get_within_limits @playtime_differential
-      @share_desc = "It would take me #{minutes_to_words_flat(@playtime_differential)} to beat my Steam library"
+      @share_desc = "It would take me #{minutes_to_words_flat(@playtime_differential)} of continuous to beat my Steam library"
 
       steam_user = Steam::User.summary(steam_id)
       @steam_avatar = Steam::User.summary(steam_id)["avatarmedium"]
