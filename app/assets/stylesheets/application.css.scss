@@ -9,6 +9,7 @@ main { color: #c6d4df; margin-top: 50px; }
 input[type='text'], input[type='number'], input[type='submit'], textarea { color: black; }
 
 .divider-bars { background: #141e2c; opacity: 0.85; padding: 25px; }
+.divider-bars-dist { background: #141e2c; opacity: 0.85; padding: 25px 25px 0 25px; }
 .or-bar { margin: 30px 0; text-align: center; }
 .divider-bars h4 { margin: 0 0 20px 0; text-align: center; }
 .steam-login { text-align: center; }
@@ -35,3 +36,4 @@ input[type='text'], input[type='number'], input[type='submit'], textarea { color
 .logo:hover { color: inherit; }
 .button-shift { position: relative; top: -1px; }
 .consideration { margin-top: 15px; text-align: center; }
+.refresh { font-size: 12px; padding-bottom: 9px; }

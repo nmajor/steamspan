@@ -32,3 +32,7 @@ $('.dist-divider').click(function(){
   });
 });
 $('.close').click(function(){ $(this).parent().remove() })
+$(document).ready(function() { $('.tooltip').tooltipster({
+    contentAsHTML: true,
+    delay: 200
+  }); });
