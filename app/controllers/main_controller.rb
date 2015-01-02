@@ -15,16 +15,20 @@ class MainController < ApplicationController
 
   def span_by_name
     steam_user = params[:steam_user]
-    steam_id = Steam::User.vanity_to_steamid(steam_user)
+    begin
+      steam_id = Steam::User.vanity_to_steamid(steam_user)
+    rescue Steam::SteamError
+      redirect_to span_path(:steam_id => steam_user)
+      return
+    end
     redirect_to span_path(:steam_id => steam_id)
   end
 
   def span
-
+    fdaf
     steam_id = params[:steam_id]
     begin
       games = Steam::Player.owned_games(steam_id)["games"]
-      # games = Steam::Player.owned_games(76561197993653488)["games"]
       raise Steam::SteamError if games.nil?
       game_ids = games.map{|g| g["appid"]}
     rescue Steam::SteamError, Steam::JSONError

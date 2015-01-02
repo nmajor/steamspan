@@ -25,5 +25,8 @@ module Steamspan
     config.active_record.raise_in_transactional_callbacks = true
 
     Steam.apikey = YAML.load_file('config/steam.yml')["apikey"]
+
+    config.exceptions_app = ->(env) { ExceptionController.action(:show).call(env) }
+    config.action_dispatch.rescue_responses["BadTaste"] = :bad_request
   end
 end
