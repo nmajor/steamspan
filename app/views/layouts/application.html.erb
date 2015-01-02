@@ -8,15 +8,16 @@
     <meta property="og:description" content="<%= @share_desc %>" />
     <meta property="og:image" content="<%= image_url 'steamleft_logo.png' %>" />
 
-    <meta name="twitter:title" content="<%= @share_desc %>" />
+    <meta name="twitter:title" content="<%= @share_desc %> #steamleft" />
     <meta name="twitter:image" content="<%= image_url 'steamleft_logo.png' %>" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'favicon.ico' %>
   </head>
   <body>
     <header class="row">
       <a href="<%= root_path %>" class="logo"><h1>STEAM<span class="alt-color">LEFT</span></h1></a>
-      <div>How much gametime left to conquer your Steam library.</div>
+      <div>How much gametime do you have left to conquer your Steam library?</div>
     </header>
     <main class="container wrap">
       <div class="row">
@@ -32,6 +33,7 @@
           <% end %>
 
           <%= yield %>
+          <section class="alt-color consideration clear"><%= link_to 'Home', root_path %> | <%= link_to 'About SteamLife', about_path %> | <%= link_to 'Privacy Policy', privacy_path %>.</section>
         </div>
       </main>
     </div>

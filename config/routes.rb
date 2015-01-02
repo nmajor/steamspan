@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#home'
   get 'about' => 'main#about'
+  get 'privacy' => 'main#privacy'
   get 'span/:steam_id' => 'main#span', as: :span
   get 'span_by_name' => 'main#span_by_name'
   post 'auth/steam/callback' =>'main#callback'

@@ -7,6 +7,9 @@ class MainController < ApplicationController
   def about
   end
 
+  def privacy
+  end
+
   def callback
     steam_id = request.env['omniauth.auth'][:extra][:raw_info][:steamid]
     redirect_to span_path(:steam_id => steam_id)
