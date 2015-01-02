@@ -1,6 +1,16 @@
 class MainController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [ :callback, :callback_fail ]
 
   def home
+  end
+
+  def callback
+    steam_id = request.env['omniauth.auth'][:extra][:raw_info][:steamid]
+    redirect_to span_path(:steam_id => steam_id)
+  end
+
+  def callback_fail
+    redirect_to root_path, :alert => "There was a problem signing in with steam. Please try again."
   end
 
   def span_by_name

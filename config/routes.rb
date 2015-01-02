@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   root 'main#home'
   get 'span/:steam_id' => 'main#span', as: :span
   get 'span_by_name' => 'main#span_by_name'
-
+  post 'auth/steam/callback' =>'main#callback'
+  post 'auth/failure' =>'main#callback_fail'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -6,6 +6,7 @@ gem 'rest-client'
 gem 'pg'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'omniauth-steam'
 
 gem 'bootstrap-sass', '~> 3.3.1'
 
