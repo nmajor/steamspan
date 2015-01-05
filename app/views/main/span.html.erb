@@ -1,10 +1,10 @@
-<section class="divider-bars center">
+<section class="divider-bars center main-span gaben-target">
   <div class="hidden" id="playtime-differential"><%= @playtime_differential %></div>
   <div class="steam-screen-name">
     <%= image_tag @steam_avatar %> <%= @steam_personaname %>
   </div>
   <div class="secondary-text">It would take you...</div>
-  <div class="playtime-differential">
+  <div class="playtime-differential gaben-trigger">
     <%= minutes_to_hours @playtime_differential %> continuous hours
   </div>
   <div class="playtime-differential-words"><%= minutes_to_words @playtime_differential %></div>

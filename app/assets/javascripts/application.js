@@ -36,3 +36,4 @@ $(document).ready(function() { $('.tooltip').tooltipster({
     contentAsHTML: true,
     delay: 200
   }); });
+$('.gaben-trigger').hover(function(){ $('.gaben-target').addClass('gaben') }, function(){ $('.gaben-target').removeClass('gaben') })

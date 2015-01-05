@@ -74,12 +74,58 @@ class MainController < ApplicationController
     end
   end
 
+  def breakdown
+    steam_id = params[:steam_id]
+    begin
+      games = Steam::Player.owned_games(steam_id)["games"]
+      raise Steam::SteamError if games.nil?
+      game_ids = games.map{|g| g["appid"]}
+    rescue Steam::SteamError, Steam::JSONError
+      redirect_to :back, :alert => 'Could not find user with that name'
+    else
+      sql = "SELECT appid, beat_time FROM games WHERE appid IN (#{game_ids.join(',')})"
+      games_with_beat_time = Hash[ActiveRecord::Base.connection.exec_query(sql).rows]
+
+      @playtime_differential = 0
+      games.each do |x|
+        if !games_with_beat_time[x["appid"]]
+          g = Game.find_by_appid( x["appid"] )
+          g.get_beat_time
+          games_with_beat_time[x["appid"]] = g.beat_time
+        end
+        playtime_difference = ( games_with_beat_time[x["appid"]] - x["playtime_forever"] )
+        @playtime_differential += ( games_with_beat_time[x["appid"]] - x["playtime_forever"] ) if playtime_difference > 0
+      end
+
+      @playtime_actual = games.map { |h| h["playtime_forever"] }.sum
+      @playtime_total = Game.where(:appid => game_ids).sum(:beat_time)
+      @playtime_differential = @playtime_differential
+
+      steam_user = Steam::User.summary(steam_id)
+      @steam_avatar = Steam::User.summary(steam_id)["avatarmedium"]
+      @steam_avatar_big = Steam::User.summary(steam_id)["avatarfull"]
+      @steam_personaname = steam_user["personaname"]
+
+    end
+  end
+
   private
   def minutes_to_words_flat mm
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
 
     "#{dd} days, #{hh} hours, #{mm} minutes".html_safe
+  end
+
+  def minutes_to_short_words mm
+    hh, mm = mm.divmod(60)
+    dd, hh = hh.divmod(24)
+
+    str = "#{mm}m"
+    str += "#{hh}h" if hh > 0
+    str += "#{dd}h" if dd > 0
+
+    str
   end
 
 end

@@ -4,7 +4,7 @@
 
 body { background: #1b2638; }
 
-header { text-align: center; background: #161920; color: #b7b7b7; padding-bottom: 30px; }
+header { text-align: center; background: #161920; color: #b7b7b7; padding-bottom: 30px; z-index: 11; }
 main { color: #c6d4df; margin-top: 50px; }
 input[type='text'], input[type='number'], input[type='submit'], textarea { color: black; }
 
@@ -38,3 +38,6 @@ input[type='text'], input[type='number'], input[type='submit'], textarea { color
 .consideration { margin-top: 15px; text-align: center; }
 .refresh { font-size: 12px; padding-bottom: 9px; }
 .footer { font-size: 10px; }
+.gaben {
+  background-image: image-url("gaben.png");
+}
