@@ -38,6 +38,5 @@ input[type='text'], input[type='number'], input[type='submit'], textarea { color
 .consideration { margin-top: 15px; text-align: center; }
 .refresh { font-size: 12px; padding-bottom: 9px; }
 .footer { font-size: 10px; }
-.gaben {
-  background-image: image-url("gaben.png");
-}
+.gaben { background-image: image-url("gaben.png"); }
+.hidden { display: none; }
