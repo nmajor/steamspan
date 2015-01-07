@@ -17,3 +17,7 @@
 <section class="divider-bars-dist dist-divider" title="This is my image's tooltip message!">
   <%= render 'shared/distribution', :distribution => @distribution, :playtime_differential => @playtime_differential %>
 </section>
+
+<section class="divider-bars divider-bars-breakdown-link center">
+  <%= link_to "Click here for a breakdown", breakdown_path(:steam_id => @steam_id) %>
+</section>

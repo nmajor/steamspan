@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'about' => 'main#about'
   get 'privacy' => 'main#privacy'
   get 'span/:steam_id' => 'main#span', as: :span
+  get 'breakdown/:steam_id' => 'main#breakdown', as: :breakdown
   get 'span_by_name' => 'main#span_by_name'
   post 'auth/steam/callback' =>'main#callback'
   post 'auth/failure' =>'main#callback_fail'

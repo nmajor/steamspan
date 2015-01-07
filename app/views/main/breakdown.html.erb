@@ -1,0 +1,31 @@
+<section class="divider-bars divider-bars-breakdown">
+  <h3>Breakdown</h3>
+  <div class="breakdown-desc">The numbers on this site are meant to be merely fun numbers to think about. They are just estimates, so dont take them too seriously.</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Beat Time</th>
+        <th>Playtime</th>
+        <th>Time Left</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sorted_games.each do |g| %>
+        <tr>
+          <td><% if !g["img_logo_url"].blank? %><%= image_tag g["real_img_logo_url"], height: "20px" %><% end %> <%= g["name"] %></td>
+          <td><%= minutes_to_short_words(g["beat_time"]) %></td>
+          <td><%= minutes_to_short_words(g["playtime_forever"], true) %></td>
+          <td><%= minutes_to_short_words(g["playtime_difference"], true) %></td>
+        </tr>
+      <% end %>
+      <tr><td colspan="4"><h3>Total</h3></td></tr>
+      <tr>
+        <td></td>
+        <td><%= minutes_to_short_words(@total_beat_time) %></td>
+        <td><%= minutes_to_short_words(@total_playtime) %></td>
+        <td><%= minutes_to_short_words(@playtime_differential) %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

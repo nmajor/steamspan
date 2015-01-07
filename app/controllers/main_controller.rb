@@ -38,9 +38,9 @@ class MainController < ApplicationController
 
   def span
 
-    steam_id = params[:steam_id]
+    @steam_id = params[:steam_id]
     begin
-      games = Steam::Player.owned_games(steam_id)["games"]
+      games = Steam::Player.owned_games(@steam_id)["games"]
       raise Steam::SteamError if games.nil?
       game_ids = games.map{|g| g["appid"]}
     rescue Steam::SteamError, Steam::JSONError
@@ -66,9 +66,9 @@ class MainController < ApplicationController
       @distribution = Distribution.get_within_limits @playtime_differential
       @share_desc = "It would take me #{@playtime_differential / 60} hours or #{minutes_to_words_flat(@playtime_differential)} of continuous gameplay to beat my Steam library"
 
-      steam_user = Steam::User.summary(steam_id)
-      @steam_avatar = Steam::User.summary(steam_id)["avatarmedium"]
-      @steam_avatar_big = Steam::User.summary(steam_id)["avatarfull"]
+      steam_user = Steam::User.summary(@steam_id)
+      @steam_avatar = steam_user["avatarmedium"]
+      @steam_avatar_big = steam_user["avatarfull"]
       @steam_personaname = steam_user["personaname"]
 
     end
@@ -77,33 +77,38 @@ class MainController < ApplicationController
   def breakdown
     steam_id = params[:steam_id]
     begin
-      games = Steam::Player.owned_games(steam_id)["games"]
-      raise Steam::SteamError if games.nil?
-      game_ids = games.map{|g| g["appid"]}
+      @games = Steam::Player.owned_games(steam_id, params: {:include_appinfo => 1})["games"]
+      raise Steam::SteamError if @games.nil?
+      game_ids = @games.map{|g| g["appid"]}
     rescue Steam::SteamError, Steam::JSONError
       redirect_to :back, :alert => 'Could not find user with that name'
     else
       sql = "SELECT appid, beat_time FROM games WHERE appid IN (#{game_ids.join(',')})"
       games_with_beat_time = Hash[ActiveRecord::Base.connection.exec_query(sql).rows]
 
+      @beaten_games = 0
       @playtime_differential = 0
-      games.each do |x|
+      @games.each do |x|
         if !games_with_beat_time[x["appid"]]
           g = Game.find_by_appid( x["appid"] )
           g.get_beat_time
           games_with_beat_time[x["appid"]] = g.beat_time
         end
         playtime_difference = ( games_with_beat_time[x["appid"]] - x["playtime_forever"] )
-        @playtime_differential += ( games_with_beat_time[x["appid"]] - x["playtime_forever"] ) if playtime_difference > 0
+        x["beat_time"] = games_with_beat_time[x["appid"]]
+        x["playtime_difference"] = playtime_difference > 0 ? playtime_difference : 0
+        x["real_img_logo_url"] = "http://media.steampowered.com/steamcommunity/public/images/apps/#{x["appid"]}/#{x["img_logo_url"]}.jpg"
+        @playtime_differential += playtime_difference if playtime_difference > 0
+        @beaten_games += 1 if playtime_difference <= 0 && games_with_beat_time[x["appid"]] > 0
       end
 
-      @playtime_actual = games.map { |h| h["playtime_forever"] }.sum
-      @playtime_total = Game.where(:appid => game_ids).sum(:beat_time)
-      @playtime_differential = @playtime_differential
+      @total_playtime = @games.map { |h| h["playtime_forever"] }.sum
+      @total_beat_time = Game.where(:appid => game_ids).sum(:beat_time)
+      @sorted_games = @games.sort_by{|x| x["playtime_difference"]}
 
       steam_user = Steam::User.summary(steam_id)
-      @steam_avatar = Steam::User.summary(steam_id)["avatarmedium"]
-      @steam_avatar_big = Steam::User.summary(steam_id)["avatarfull"]
+      @steam_avatar = steam_user["avatarmedium"]
+      @steam_avatar_big = steam_user["avatarfull"]
       @steam_personaname = steam_user["personaname"]
 
     end
