@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <% @sorted_games.each do |g| %>
-        <tr>
+        <tr id="<%= game["appid"] %>">
           <td><% if !g["img_logo_url"].blank? %><%= image_tag g["real_img_logo_url"], height: "20px" %><% end %> <%= g["name"] %></td>
           <td><%= minutes_to_short_words(g["beat_time"]) %></td>
           <td><%= minutes_to_short_words(g["playtime_forever"], true) %></td>
