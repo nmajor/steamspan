@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  validates_numericality_of :beat_time
+
   def self.create_with_appid aid
     "blah"
   end

@@ -84,7 +84,7 @@ class DistributionsController < ApplicationController
     end
 
     def check_for_key
-      unless params[:key] && params[:key] == 'mariopartysucks'
+      unless params[:key] && params[:key] == SPECIAL_KEY
         redirect_to root_path, :alert => 'You are not allowed in there.'
         return
       end

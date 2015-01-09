@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :games
   resources :distributions do
     get 'random', on: :collection
   end
