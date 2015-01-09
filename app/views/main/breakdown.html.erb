@@ -1,6 +1,7 @@
 <section class="divider-bars divider-bars-breakdown">
   <h3>Breakdown</h3>
   <div class="breakdown-desc">The numbers on this site are meant to be merely fun numbers to think about. They are just estimates, so dont take them too seriously.</div>
+  <div class="breakdown-desc">Also, we don't have beat time data for all steam games.</div>
   <table class="table">
     <thead>
       <tr>
@@ -12,7 +13,7 @@
     </thead>
     <tbody>
       <% @sorted_games.each do |g| %>
-        <tr id="<%= game["appid"] %>">
+        <tr id="<%= g["appid"] %>">
           <td><% if !g["img_logo_url"].blank? %><%= image_tag g["real_img_logo_url"], height: "20px" %><% end %> <%= g["name"] %></td>
           <td><%= minutes_to_short_words(g["beat_time"]) %></td>
           <td><%= minutes_to_short_words(g["playtime_forever"], true) %></td>
