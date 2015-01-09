@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = Game.all.order(:beat_time)
   end
 
   # GET /games/1
