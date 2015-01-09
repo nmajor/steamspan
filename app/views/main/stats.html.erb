@@ -1,0 +1,15 @@
+<section class="divider-bars center">
+  <h3>Longest time to beat a steam library</h3>
+  <div class="playtime-differential gaben-trigger">
+    <%= minutes_to_hours @biggest_playtime_differential %> continuous hours
+  </div>
+  <div class="playtime-differential-words"><%= minutes_to_words @biggest_playtime_differential %></div>
+</section>
+
+<section class="divider-bars center top-50">
+  <h3>Average time to beat a steam library</h3>
+  <div class="playtime-differential gaben-trigger">
+    <%= minutes_to_hours @average_playtime_differential %> continuous hours
+  </div>
+  <div class="playtime-differential-words"><%= minutes_to_words @average_playtime_differential %></div>
+</section>

@@ -10,6 +10,12 @@ class MainController < ApplicationController
   def privacy
   end
 
+  def stats
+    @biggest_playtime_differential = UserStat.all.order('minutes desc').first.minutes
+    @average_playtime_differential = UserStat.average(:minutes).to_i
+    @total_steamids_checked = UserStat.all.size
+  end
+
   def callback
     steam_id = request.env['omniauth.auth'][:extra][:raw_info][:steamid]
     redirect_to span_path(:steam_id => steam_id)
@@ -71,6 +77,10 @@ class MainController < ApplicationController
       @steam_avatar_big = steam_user["avatarfull"]
       @steam_personaname = steam_user["personaname"]
 
+      user_stat = UserStat.find_by_steamid(@steam_id)
+      user_stat ||= UserStat.new(steamid: @steam_id)
+      user_stat.minutes = @playtime_differential
+      user_stat.save
     end
   end
 

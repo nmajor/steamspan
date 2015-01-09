@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231231206) do
+ActiveRecord::Schema.define(version: 20150109224912) do
 
   create_table "distributions", force: :cascade do |t|
     t.text     "description"
@@ -34,5 +34,15 @@ ActiveRecord::Schema.define(version: 20141231231206) do
   add_index "games", ["appid"], name: "index_games_on_appid"
   add_index "games", ["beat_time"], name: "index_games_on_beat_time"
   add_index "games", ["game_name"], name: "index_games_on_game_name"
+
+  create_table "user_stats", force: :cascade do |t|
+    t.integer  "minutes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "steamid"
+  end
+
+  add_index "user_stats", ["minutes"], name: "index_user_stats_on_minutes"
+  add_index "user_stats", ["steamid"], name: "index_user_stats_on_steamid"
 
 end
