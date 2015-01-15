@@ -20,8 +20,11 @@ class Game < ActiveRecord::Base
     response = RestClient.send(:post, url, data)
     noko = Nokogiri.HTML(response)
     if noko.css('#suggestionsList_main > li').first
-      beat_time_text = noko.css('#suggestionsList_main > li').first.css('.gamelist_tidbit')[1].text
-      self.beat_time = convert_beat_time_text_to_minutes beat_time_text
+      (0..7).each do |x|
+        break if self.beat_time > 0
+        beat_time_text = noko.css('#suggestionsList_main > li').first.css('.gamelist_tidbit')[x].text if noko.css('#suggestionsList_main > li').first.css('.gamelist_tidbit')[x]     
+        self.beat_time = convert_beat_time_text_to_minutes beat_time_text
+      end
     else
       self.beat_time = 0
     end
@@ -29,12 +32,13 @@ class Game < ActiveRecord::Base
   end
 
   def convert_beat_time_text_to_minutes text
+    return 0 if text.nil?
     words = text.split ' '
     return 0 if !words[1]
-    case words[1].downcase
-    when "minutes" || 'minute' || 'm'
+    time = words[1].downcase
+    if time.in? %w( minutes minute m )
       return words[0].to_i
-    when "hours" || 'hour' || 'h'
+    elsif time.in? %w( hours hour h )
       return words[0].to_i * 60
     end
     0

@@ -59,9 +59,10 @@ class MainController < ApplicationController
       games.each do |x|
         if !games_with_beat_time[x["appid"]]
           g = Game.find_by_appid( x["appid"] )
-          g.get_beat_time
-          games_with_beat_time[x["appid"]] = g.beat_time
+          g.get_beat_time if g
+          games_with_beat_time[x["appid"]] = g.beat_time if g
         end
+        next unless games_with_beat_time[x["appid"]]
         playtime_difference = ( games_with_beat_time[x["appid"]] - x["playtime_forever"] )
         @playtime_differential += ( games_with_beat_time[x["appid"]] - x["playtime_forever"] ) if playtime_difference > 0
       end
