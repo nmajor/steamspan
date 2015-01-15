@@ -2,8 +2,14 @@ module ApplicationHelper
   def minutes_to_words mm
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
+    yy, dd = dd.divmod(365)
 
-    "<span class=\"day-words\">#{dd} days,</span class=\"hour-words\"><span>#{hh} hours,</span><span class=\"minute-words\">#{mm} minutes</span>".html_safe
+    str = ''
+    str += "<span class=\"year-words\">#{pluralize(yy, 'year')},</span>" if yy > 0
+    str += "<span class=\"day-words\">#{pluralize(dd, 'day')},</span>" if dd > 0
+    str += "<span class=\"hour-words\">#{pluralize(hh, 'hour')},</span>" if hh > 0
+    str += "<span class=\"minute-words\">#{mm} minutes</span>"
+    str.html_safe
   end
 
   def minutes_to_short_words mm, never_blank=nil

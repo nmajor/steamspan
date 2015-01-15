@@ -13,6 +13,7 @@ class MainController < ApplicationController
   def stats
     @biggest_playtime_differential = UserStat.all.order('minutes desc').first.minutes
     @average_playtime_differential = UserStat.average(:minutes).to_i
+    @total_playtime_differential = UserStat.sum(:minutes).to_i
     @total_steamids_checked = UserStat.all.size
   end
 

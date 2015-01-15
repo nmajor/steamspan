@@ -1,11 +1,11 @@
 <section class="divider-bars center">
-  <div class="user-total"><%= @total_steamids_checked %> Steam Users Checked</div>
+  <div class="user-total"><%= number_with_delimiter(@total_steamids_checked) %> Steam Users Checked</div>
 </section>
 
 <section class="divider-bars center top-30">
   <h3>Longest time to beat a steam library</h3>
   <div class="playtime-differential gaben-trigger">
-    <%= minutes_to_hours @biggest_playtime_differential %> continuous hours
+    <%= number_with_delimiter(minutes_to_hours(@biggest_playtime_differential)) %> hours
   </div>
   <div class="playtime-differential-words"><%= minutes_to_words @biggest_playtime_differential %></div>
 </section>
@@ -13,7 +13,16 @@
 <section class="divider-bars center top-30">
   <h3>Average time to beat a steam library</h3>
   <div class="playtime-differential gaben-trigger">
-    <%= minutes_to_hours @average_playtime_differential %> continuous hours
+    <%= number_with_delimiter(minutes_to_hours(@average_playtime_differential)) %> hours
   </div>
   <div class="playtime-differential-words"><%= minutes_to_words @average_playtime_differential %></div>
+</section>
+
+<section class="divider-bars center top-30">
+  <h3>Total time to beat ALL steam libraries.</h3>
+  <div class="total-subtext">(From all gamers who have used this site.)</div>
+  <div class="playtime-differential gaben-trigger">
+    <%= number_with_delimiter(minutes_to_hours(@total_playtime_differential)) %> hours
+  </div>
+  <div class="playtime-differential-words"><%= minutes_to_words @biggest_playtime_differential %></div>
 </section>

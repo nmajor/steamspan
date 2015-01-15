@@ -19,6 +19,7 @@ input[type='text'], input[type='number'], input[type='submit'], textarea { color
   input { height: 29px; }
 }
 .steam-screen-name { font-size: 40px; }
+.year-words { margin: 0 5px 0 0; }
 .day-words { margin: 0 5px 0 0; }
 .hour-words { margin: 0 5px 0 5px; }
 .minute-words { margin: 0 0 0 5px; }
@@ -47,3 +48,4 @@ input[type='text'], input[type='number'], input[type='submit'], textarea { color
 .user-total { font-size: 24px; }
 .top-50 { margin-top: 50px; }
 .top-30 { margin-top: 30px; }
+.total-subtext { font-weight: 100; font-size: 16px; margin-bottom: 15px; }
