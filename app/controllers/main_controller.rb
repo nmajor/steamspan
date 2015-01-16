@@ -15,6 +15,31 @@ class MainController < ApplicationController
     @average_playtime_differential = UserStat.average(:minutes).to_i
     @total_playtime_differential = UserStat.sum(:minutes).to_i
     @total_steamids_checked = UserStat.all.size
+    @refresh_stats = true
+  end
+
+  def fresh_stats
+    # @biggest_playtime_differential = UserStat.all.order('minutes desc').first.minutes
+    # @average_playtime_differential = UserStat.average(:minutes).to_i
+    # @total_playtime_differential = UserStat.sum(:minutes).to_i
+    # @total_steamids_checked = UserStat.all.size
+
+    @biggest_playtime_differential = 500
+    @average_playtime_differential = 500
+    @total_playtime_differential = 500
+    @total_steamids_checked = 500
+
+    data = {
+      :biggest_playtime_differential => { :hours => view_context.number_with_delimiter(minutes_to_hours(@biggest_playtime_differential)), :words => view_context.minutes_to_words(@biggest_playtime_differential) },
+      :average_playtime_differential => { :hours => view_context.number_with_delimiter(minutes_to_hours(@average_playtime_differential)), :words => view_context.minutes_to_words(@average_playtime_differential) },
+      :total_playtime_differential   => { :hours => view_context.number_with_delimiter(minutes_to_hours(@total_playtime_differential)),   :words => view_context.minutes_to_words(@total_playtime_differential) },
+      :total_steamids_checked        => view_context.number_with_delimiter(@total_steamids_checked),
+    }
+
+    respond_to do |format|
+      format.html { render layout: false }
+      format.json { render json: data }
+    end
   end
 
   def callback
@@ -148,4 +173,7 @@ class MainController < ApplicationController
     str
   end
 
+  def minutes_to_hours mm
+    mm / 60
+  end
 end

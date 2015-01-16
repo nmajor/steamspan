@@ -52,6 +52,9 @@
       ga('send', 'pageview');
 
     </script>
+    <% if @refresh_stats %>
+      <script> setInterval(function(){ refresh_stats(); }, 10000); </script>
+    <% end %>
     <div class="gaben hidden"></div>
   </body>
 </html>

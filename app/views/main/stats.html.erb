@@ -1,28 +1,28 @@
 <section class="divider-bars center">
-  <div class="user-total"><%= number_with_delimiter(@total_steamids_checked) %> Steam Users Checked</div>
+  <div class="user-total" id="total_steamids_checked"><span><%= number_with_delimiter(@total_steamids_checked) %></span> Steam Users Checked</div>
 </section>
 
 <section class="divider-bars center top-30">
   <h3>Longest time to beat a steam library</h3>
-  <div class="playtime-differential gaben-trigger">
-    <%= number_with_delimiter(minutes_to_hours(@biggest_playtime_differential)) %> hours
+  <div class="playtime-differential gaben-trigger" id="biggest_playtime_differential_hours">
+    <span><%= number_with_delimiter(minutes_to_hours(@biggest_playtime_differential)) %></span> hours
   </div>
-  <div class="playtime-differential-words"><%= minutes_to_words @biggest_playtime_differential %></div>
+  <div class="playtime-differential-words" id="biggest_playtime_differential_words"><%= minutes_to_words @biggest_playtime_differential %></div>
 </section>
 
 <section class="divider-bars center top-30">
   <h3>Average time to beat a steam library</h3>
-  <div class="playtime-differential gaben-trigger">
-    <%= number_with_delimiter(minutes_to_hours(@average_playtime_differential)) %> hours
+  <div class="playtime-differential gaben-trigger" id="average_playtime_differential_hours">
+    <span><%= number_with_delimiter(minutes_to_hours(@average_playtime_differential)) %></span> hours
   </div>
-  <div class="playtime-differential-words"><%= minutes_to_words @average_playtime_differential %></div>
+  <div class="playtime-differential-words" id="average_playtime_differential_words"><%= minutes_to_words @average_playtime_differential %></div>
 </section>
 
-<section class="divider-bars center top-30">
+<section class="divider-bars center top-30" id="total_playtime_differential_hours">
   <h3>Total time to beat ALL steam libraries.</h3>
   <div class="total-subtext">(From all gamers who have used this site.)</div>
-  <div class="playtime-differential gaben-trigger">
-    <%= number_with_delimiter(minutes_to_hours(@total_playtime_differential)) %> hours
+  <div class="playtime-differential gaben-trigger" id="total_playtime_differential_hours">
+    <span><%= number_with_delimiter(minutes_to_hours(@total_playtime_differential)) %></span> hours
   </div>
-  <div class="playtime-differential-words"><%= minutes_to_words @total_playtime_differential %></div>
+  <div class="playtime-differential-words" id="total_playtime_differential_words"><%= minutes_to_words @total_playtime_differential %></div>
 </section>

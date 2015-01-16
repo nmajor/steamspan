@@ -37,3 +37,28 @@ $(document).ready(function() { $('.tooltip').tooltipster({
     delay: 200
   }); });
 $('.gaben-trigger').hover(function(){ $('.gaben-target').addClass('gaben') }, function(){ $('.gaben-target').removeClass('gaben') })
+
+function refresh_stats(){
+  var url = '/fresh_stats';
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: "json",
+    contentType: "text/html",
+    success: function(data){
+      $('#biggest_playtime_differential_hours > span').html(data.biggest_playtime_differential.hours);
+      $('#biggest_playtime_differential_words').html(data.biggest_playtime_differential.words);
+
+      $('#average_playtime_differential_hours > span').html(data.average_playtime_differential.hours);
+      $('#average_playtime_differential_words').html(data.average_playtime_differential.words);
+
+      $('#total_playtime_differential_hours > span').html(data.total_playtime_differential.hours);
+      $('#total_playtime_differential_words').html(data.total_playtime_differential.words);
+
+      $('#total_steamids_checked > span').html(data.total_steamids_checked);
+    },
+    error: function(){
+      console.log('error man');
+    }
+  });
+}
