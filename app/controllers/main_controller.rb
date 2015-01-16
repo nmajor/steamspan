@@ -105,6 +105,7 @@ class MainController < ApplicationController
           g = Game.find_by_appid( x["appid"] )
           g.get_beat_time
           games_with_beat_time[x["appid"]] = g.beat_time
+          next unless games_with_beat_time[x["appid"]]
         end
         playtime_difference = ( games_with_beat_time[x["appid"]] - x["playtime_forever"] )
         x["beat_time"] = games_with_beat_time[x["appid"]]
