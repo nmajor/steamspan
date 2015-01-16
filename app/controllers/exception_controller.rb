@@ -5,9 +5,6 @@ class ExceptionController < ApplicationController
 
   def show
     @details = details
-    puts 'blah blahblah '+@details.inspect
-    puts 'blah blahblah '+@status.inspect
-    puts 'blah blahblah '+layout_status.inspect
     respond_with status: @status
   end
 
