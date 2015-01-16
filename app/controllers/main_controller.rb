@@ -19,15 +19,10 @@ class MainController < ApplicationController
   end
 
   def fresh_stats
-    # @biggest_playtime_differential = UserStat.all.order('minutes desc').first.minutes
-    # @average_playtime_differential = UserStat.average(:minutes).to_i
-    # @total_playtime_differential = UserStat.sum(:minutes).to_i
-    # @total_steamids_checked = UserStat.all.size
-
-    @biggest_playtime_differential = 500
-    @average_playtime_differential = 500
-    @total_playtime_differential = 500
-    @total_steamids_checked = 500
+    @biggest_playtime_differential = UserStat.all.order('minutes desc').first.minutes
+    @average_playtime_differential = UserStat.average(:minutes).to_i
+    @total_playtime_differential = UserStat.sum(:minutes).to_i
+    @total_steamids_checked = UserStat.all.size
 
     data = {
       :biggest_playtime_differential => { :hours => view_context.number_with_delimiter(minutes_to_hours(@biggest_playtime_differential)), :words => view_context.minutes_to_words(@biggest_playtime_differential) },
