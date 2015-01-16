@@ -1,5 +1,6 @@
 module ApplicationHelper
   def minutes_to_words mm
+    mm ||= 0
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
     yy, dd = dd.divmod(365)
@@ -13,6 +14,7 @@ module ApplicationHelper
   end
 
   def minutes_to_short_words mm, never_blank=nil
+    mm ||= 0
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
 

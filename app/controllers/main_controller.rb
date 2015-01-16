@@ -103,8 +103,8 @@ class MainController < ApplicationController
       @games.each do |x|
         if !games_with_beat_time[x["appid"]]
           g = Game.find_by_appid( x["appid"] )
-          g.get_beat_time
-          games_with_beat_time[x["appid"]] = g.beat_time
+          g.get_beat_time if g
+          games_with_beat_time[x["appid"]] = g.beat_time if g
         end
         next unless games_with_beat_time[x["appid"]]
         playtime_difference = ( games_with_beat_time[x["appid"]] - x["playtime_forever"] )
@@ -117,7 +117,7 @@ class MainController < ApplicationController
 
       @total_playtime = @games.map { |h| h["playtime_forever"] }.sum
       @total_beat_time = Game.where(:appid => game_ids).sum(:beat_time)
-      @sorted_games = @games.sort_by{|x| x["playtime_difference"]}
+      @sorted_games = @games.sort_by{|x| (x["playtime_difference"].blank? ? 0 : x["playtime_difference"]) }
 
       steam_user = Steam::User.summary(steam_id)
       @steam_avatar = steam_user["avatarmedium"]
@@ -129,6 +129,7 @@ class MainController < ApplicationController
 
   private
   def minutes_to_words_flat mm
+    mm ||= 0
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
 
@@ -136,6 +137,7 @@ class MainController < ApplicationController
   end
 
   def minutes_to_short_words mm
+    mm ||= 0
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
 
