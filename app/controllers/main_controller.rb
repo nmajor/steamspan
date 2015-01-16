@@ -15,6 +15,7 @@ class MainController < ApplicationController
     @average_playtime_differential = UserStat.average(:minutes).to_i
     @total_playtime_differential = UserStat.sum(:minutes).to_i
     @total_steamids_checked = UserStat.all.size
+    @distribution = Distribution.get_within_limits @total_playtime_differential
     @refresh_stats = true
   end
 

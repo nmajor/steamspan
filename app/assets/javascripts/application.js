@@ -32,10 +32,6 @@ $('.dist-divider').click(function(){
   });
 });
 $('.close').click(function(){ $(this).parent().remove() })
-$(document).ready(function() { $('.tooltip').tooltipster({
-    contentAsHTML: true,
-    delay: 200
-  }); });
 $('.gaben-trigger').hover(function(){ $('.gaben-target').addClass('gaben') }, function(){ $('.gaben-target').removeClass('gaben') })
 
 function refresh_stats(){
