@@ -1,4 +1,5 @@
 class Distribution < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   mount_uploader :image, ImageUploader
 
   def self.get_within_limits min
@@ -6,6 +7,6 @@ class Distribution < ActiveRecord::Base
   end
 
   def description_with_num min
-    description.gsub('[num]', (min / minutes).to_s)
+    description.gsub('[num]', number_with_delimiter((min / minutes).to_s))
   end
 end

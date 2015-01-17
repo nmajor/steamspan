@@ -33,8 +33,7 @@ git pull origin master
 RAILS_ENV=production rake db:migrate
 RAILS_ENV=production rake assets:precompile
 export rvmsudo_secure_path=1
-rvmsudo passenger stop --port 80
-rvmsudo passenger start --daemonize --port 80 --user deployer --user=deployer --environment production
+rvmsudo passenger stop --port 80 && rvmsudo passenger start --daemonize --port 80 --user deployer --user=deployer --environment production
 
 rvmsudo passenger start --port 80 --user deployer --user=deployer --environment production
 
