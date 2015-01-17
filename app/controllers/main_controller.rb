@@ -72,7 +72,7 @@ class MainController < ApplicationController
       raise Steam::SteamError if games.nil?
       game_ids = games.map{|g| g["appid"]}
     rescue Steam::SteamError, Steam::JSONError
-      redirect_to :back, :alert => 'Could not find user with that name'
+      redirect_to root_path, :alert => 'Could not find user with that name'
     else
       sql = "SELECT appid, beat_time FROM games WHERE appid IN (#{game_ids.join(',')})"
       games_with_beat_time = Hash[ActiveRecord::Base.connection.exec_query(sql).rows]
@@ -114,7 +114,7 @@ class MainController < ApplicationController
       raise Steam::SteamError if @games.nil?
       game_ids = @games.map{|g| g["appid"]}
     rescue Steam::SteamError, Steam::JSONError
-      redirect_to :back, :alert => 'Could not find user with that name'
+      redirect_to root_path, :alert => 'Could not find user with that name'
     else
       sql = "SELECT appid, beat_time FROM games WHERE appid IN (#{game_ids.join(',')})"
       games_with_beat_time = Hash[ActiveRecord::Base.connection.exec_query(sql).rows]
