@@ -21,7 +21,7 @@ class Game < ActiveRecord::Base
     noko = Nokogiri.HTML(response)
     if noko.css('#suggestionsList_main > li').first
       (0..7).each do |x|
-        break if self.beat_time > 0
+        break if self.beat_time && self.beat_time > 0
         beat_time_text = noko.css('#suggestionsList_main > li').first.css('.gamelist_tidbit')[x].text if noko.css('#suggestionsList_main > li').first.css('.gamelist_tidbit')[x]     
         self.beat_time = convert_beat_time_text_to_minutes beat_time_text
       end
