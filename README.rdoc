@@ -35,10 +35,8 @@ RAILS_ENV=production rake assets:precompile
 export rvmsudo_secure_path=1
 rvmsudo passenger stop --port 80 && rvmsudo passenger start --daemonize --port 80 --user deployer --user=deployer --environment production
 
-rvmsudo passenger start --port 80 --user deployer --user=deployer --environment production
-
 rvmsudo rails c production
 
-Social sharing options
-load all beat_times for all games in database
 
+rvmsudo passenger stop --port 80 && sudo service nginx restart
+sudo service nginx stop && rvmsudo passenger start --daemonize --port 80 --user deployer --user=deployer --environment production
