@@ -19,3 +19,4 @@
 steam.yml
 secrets.yml
 /public/assets/*
+/config/database.yml
