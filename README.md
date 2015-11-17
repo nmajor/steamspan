@@ -1,5 +1,7 @@
 This app has been dockerized
 
+### Docker usage notes
+
 To build image:
 
     docker build -t steamspan .
@@ -16,32 +18,24 @@ Open bash session inside container
 Adding ENV variables to the docker image: https://github.com/phusion/passenger-docker#setting-environment-variables-in-nginx
 
 
-docker kill steamspan
-docker rm steamspan
-docker build -t steamspan .
-docker run -i --name steamspan -d -p 3000:80 -e PASSENGER_APP_ENV=development steamspan
+Build and reload container
+    docker kill steamspan
+    docker rm steamspan
+    docker build -t steamspan .
+    docker run -i --name steamspan -d -p 3000:80 -e PASSENGER_APP_ENV=development steamspan
 
 
-docker kill steamspan
-docker rm steamspan
-docker build -t steamspan .
-docker run -i --name steamspan -d -p 3000:80 -v /Users/nmajor/dev/steamspan:/var/www/steamspan -e PASSENGER_APP_ENV=development steamspan
-docker exec -t -i steamspan bash -l
+### Tagging and pushing docker image
 
-/usr/local/bundle/bin/unicorn -c config/unicorn.rb -E $RAILS_ENV -D
-service nginx restart
+    docker tag [IMAGE_ID] nmajor/steamspan:latest
 
+    docker login
 
-APP_NAME="steamspan"
-APP_ROOT="/var/www/$APP_NAME"
-ENV=$RAILS_ENV
-CMD="/usr/local/bundle/bin/unicorn -c config/unicorn.rb -E $ENV -D"
-su - $USER -c "$CMD"
+    docker push nmajor/steamspan
 
 
+### Environmental variables needed for production docker container
 
-
-### Environmental Variables for Production
 STEAM_API_KEY
 DATABASE_NAME
 DATABASE_HOST

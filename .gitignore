@@ -17,7 +17,5 @@
 !/log/.keep
 /tmp
 steam.yml
-secrets.yml
 /public/assets/*
-/config/database.yml
 /container/secret.env
