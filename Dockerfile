@@ -20,6 +20,7 @@ RUN rm -f /etc/service/nginx/down
 # Add nginx config for app
 RUN rm /etc/nginx/sites-enabled/default
 ADD container/app.conf /etc/nginx/sites-enabled/steamspan.conf
+ADD container/app-env.conf /etc/nginx/main.d/app-env.conf
 RUN mkdir $HOME
 
 WORKDIR $HOME
