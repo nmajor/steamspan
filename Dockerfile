@@ -21,15 +21,14 @@ RUN rm -f /etc/service/nginx/down
 RUN rm /etc/nginx/sites-enabled/default
 ADD container/app.conf /etc/nginx/sites-enabled/steamspan.conf
 ADD container/app-env.conf /etc/nginx/main.d/app-env.conf
-RUN mkdir $HOME
 
+RUN mkdir $HOME
 WORKDIR $HOME
 
 # RUN ...commands to place your web app in /home/app/webapp...
 ADD . $HOME
+RUN rake assets:precompile
 RUN chown app:app -R /home/app
 
-
-
-
-
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
