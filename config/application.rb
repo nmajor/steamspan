@@ -24,7 +24,7 @@ module Steamspan
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    Steam.apikey = ENV["STEAM_API_KEY"] || YAML.load_file('config/steam.yml')["api_key"]
+    Steam.apikey = ENV["STEAM_API_KEY"] || ( File.exist?('config/steam.yml') ? YAML.load_file('config/steam.yml')["api_key"] : '0' )
 
     config.exceptions_app = ->(env) { ExceptionController.action(:show).call(env) }
     config.action_dispatch.rescue_responses["BadTaste"] = :bad_request
