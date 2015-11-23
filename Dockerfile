@@ -30,5 +30,7 @@ ADD . $HOME
 RUN rake assets:precompile
 RUN chown app:app -R /home/app
 
+ADD container/containerbuddy /opt/containerbuddy
+
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
