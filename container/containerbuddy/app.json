@@ -11,9 +11,8 @@
   ],
   "backends": [
     {
-      "name": "app",
+      "name": "steamleft",
       "poll": 5
-      // "onChange": "/opt/containerbuddy/reload-app.sh"
     }
   ]
 }
