@@ -8,11 +8,5 @@
       "poll": 10,
       "ttl": 25
     }
-  ],
-  "backends": [
-    {
-      "name": "steamleft",
-      "poll": 5
-    }
   ]
 }
