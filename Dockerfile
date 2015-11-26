@@ -30,7 +30,9 @@ ADD . $HOME
 RUN rake assets:precompile
 RUN chown app:app -R /home/app
 
-ADD container/consul /opt/consul
-
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Register node with consul
+ADD container/consul /opt/consul
+RUN bash /opt/consul/register.sh
