@@ -30,6 +30,9 @@ ADD . $HOME
 RUN rake assets:precompile
 RUN chown app:app -R /home/app
 
+# Add container buddy stuff
+ADD container/containerbuddy /opt/containerbuddy
+
 # Add consul register script
 ADD container/consul /opt/consul
 
