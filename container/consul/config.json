@@ -1,0 +1,11 @@
+{
+  "ID": "steamleft-HOSTNAME",
+  "Name": "steamleft",
+  "Tags": [],
+  "Address": "SELF_IP",
+  "Port": 80,
+  "Check": {
+    "HTTP": "http://SELF_IP/",
+    "Interval": "10s"
+  }
+}
