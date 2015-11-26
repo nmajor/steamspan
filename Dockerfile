@@ -35,3 +35,4 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Register node with consul
 ADD container/consul /opt/consul
+ENTRYPOINT bash /opt/consul/register.sh
