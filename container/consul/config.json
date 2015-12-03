@@ -5,7 +5,7 @@
   "Address": "SELF_IP",
   "Port": 80,
   "Check": {
-    "HTTP": "http://SELF_IP/",
+    "HTTP": "http://SELF_IP/health",
     "Interval": "10s"
   }
 }
