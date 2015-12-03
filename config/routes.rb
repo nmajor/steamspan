@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#home'
   get 'about' => 'main#about'
+  get 'health' => 'main#health'
   get 'privacy' => 'main#privacy'
   get 'stats' => 'main#stats'
   get 'fresh_stats' => 'main#fresh_stats'

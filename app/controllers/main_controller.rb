@@ -148,6 +148,10 @@ class MainController < ApplicationController
     end
   end
 
+  def health
+    render :text => "OK"
+  end
+
   private
   def minutes_to_words_flat mm
     mm ||= 0
