@@ -9,4 +9,4 @@ HOSTNAME=`hostname`
 sed -i -e s/'HOSTNAME'/$HOSTNAME/g config.json
 sed -i -e s/'SELF_IP'/$SELF_IP/g config.json
 
-curl -X POST http://nmajor_consul_1:8500/v1/agent/service/register -d @config.json -H 'Content-type: application/json'
+curl -X POST http://consul:8500/v1/agent/service/register -d @config.json -H 'Content-type: application/json'
