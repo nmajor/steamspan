@@ -9,4 +9,8 @@ HOSTNAME=`hostname`
 sed -i -e s/'HOSTNAME'/$HOSTNAME/g config.json
 sed -i -e s/'SELF_IP'/$SELF_IP/g config.json
 
-curl -X POST http://consul:8500/v1/agent/service/register -d @config.json -H 'Content-type: application/json'
+if [ -z "$CONSUL_IP" ]; then
+    CONSUL_IP='consul'
+fi
+
+curl -X POST "http://$CONSUL_IP:8500/v1/agent/service/register" -d @config.json -H 'Content-type: application/json'
