@@ -1,11 +1,11 @@
 {
-  "ID": "steamleft-NikeMac.local",
+  "ID": "steamleft-HOSTNAME",
   "Name": "steamleft",
   "Tags": [],
-  "Address": "192.168.1.50",
+  "Address": "SELF_IP",
   "Port": 80,
   "Check": {
-    "HTTP": "http://192.168.1.50/health",
+    "HTTP": "http://SELF_IP/health",
     "Interval": "10s"
   }
 }
