@@ -9,15 +9,22 @@ ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN bundle install
 
-# Set correct environment variables.
-ENV APP_HOME /var/apps/steamspan
+# Install and configure nginx
+RUN apt-get install -y nginx
+RUN rm -rf /etc/nginx/sites-available/default
+ADD container/nginx.conf /etc/nginx/sites-available/default
 
 ADD container/containerbuddy/containerbuddy /sbin/containerbuddy
 
+ENV APP_HOME /var/app/steamspan
+ENV APP_SHARED /var/app/shared
 RUN mkdir -p $APP_HOME
+RUN mkdir -p $APP_SHARED/pids $APP_SHARED/sockets $APP_SHARED/log
 
 ADD . $APP_HOME
 WORKDIR $APP_HOME
 RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 
-CMD ["rails","server","-b","0.0.0.0"]
+CMD ["bundle", "exec", "puma"]
+
+RUN service nginx restart
