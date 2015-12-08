@@ -3,7 +3,7 @@
   "services": [
     {
       "name": "steamleft",
-      "port": 3000,
+      "port": 80,
       "interfaces": ["eth0"],
       "health": "/usr/bin/curl --fail -s http://localhost/health",
       "poll": 10,

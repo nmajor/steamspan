@@ -12,7 +12,7 @@ RUN bundle install
 # Install and configure nginx
 RUN apt-get install -y nginx
 RUN rm -rf /etc/nginx/sites-available/default
-ADD container/nginx.conf /etc/nginx/sites-available/default
+ADD container/nginx.conf /etc/nginx/nginx.conf
 
 ADD container/containerbuddy/containerbuddy /sbin/containerbuddy
 
