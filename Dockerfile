@@ -1,11 +1,6 @@
-FROM phusion/passenger-ruby21:0.9.17
-# See documentation for using this image as a base here: https://github.com/phusion/passenger-docker
-
-# Set correct environment variables.
-ENV HOME /home/app/steamspan
-
-# Use baseimage-docker's init process.
-CMD ["/sbin/my_init"]
+FROM ruby:2.2.0
+RUN apt-get update -qq
+RUN apt-get install -y build-essential curl git imagemagick libmagickwand-dev libcurl4-openssl-dev nodejs postgresql-client
 
 # Copy the Gemfile and Gemfile.lock into the image.
 # Temporarily set the working directory to where they are.
@@ -14,24 +9,15 @@ ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN bundle install
 
-# Enable nginx and passenger
-RUN rm -f /etc/service/nginx/down
+# Set correct environment variables.
+ENV APP_HOME /var/apps/steamspan
 
-# Add nginx config for app
-RUN rm /etc/nginx/sites-enabled/default
-ADD container/app.conf /etc/nginx/sites-enabled/steamspan.conf
-ADD container/app-env.conf /etc/nginx/main.d/app-env.conf
+ADD container/containerbuddy/containerbuddy /sbin/containerbuddy
 
-RUN mkdir $HOME
-WORKDIR $HOME
+RUN mkdir -p $APP_HOME
 
-# RUN ...commands to place your web app in /home/app/webapp...
-ADD . $HOME
-RUN rake assets:precompile
-RUN chown app:app -R /home/app
+ADD . $APP_HOME
+WORKDIR $APP_HOME
+RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 
-# Add consul register script
-ADD container/consul /opt/consul
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+CMD ["rails","server","-b","0.0.0.0"]
