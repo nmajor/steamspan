@@ -12,14 +12,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/development.sqlite3
-
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: <%= ENV['PRODUCTION_DATABASE_NAME'] %>
-#   host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
-#   pool: 5
-#   username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] %>
-#   password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['PRODUCTION_DATABASE_NAME'] %>
+  host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
+  pool: 5
+  username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] %>
+  password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
