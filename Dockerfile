@@ -23,6 +23,7 @@ RUN nrsysmond-config --set license_key=b5ba70c3c0aed01c515632f8208ded43c9dd3598
 RUN /etc/init.d/newrelic-sysmond start
 
 ADD container/containerbuddy/containerbuddy /sbin/containerbuddy
+ADD container/distributive /sbin/distributive
 
 ENV APP_HOME /var/app/steamspan
 RUN mkdir -p $APP_HOME
