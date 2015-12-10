@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [ :callback, :callback_fail ]
+  newrelic_ignore only: [ :health ]
 
   def home
   end
