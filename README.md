@@ -9,7 +9,7 @@ To build image:
 To run in development:
 
     docker run -i --name steamspan -d -p 80:80 -e RAILS_ENV=development steamspan
-    docker run -i --name steamspan -d -p 3000:80 -v /Users/nmajor/dev/steamspan:/var/www/steamspan -e PASSENGER_APP_ENV=development steamspan
+    docker run -i --name steamspan -d -p 80:80 -v /Users/nmajor/dev/steamspan:/var/app/steamspan -e PASSENGER_APP_ENV=development steamspan
 
 Open bash session inside container
 
