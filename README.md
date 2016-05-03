@@ -42,3 +42,8 @@ DATABASE_HOST
 DATABASE_USERNAME
 DATABASE_PASSWORD
 SECRET_KEY_BASE
+
+### Google analytics link tracking
+
+https://developers.google.com/analytics/devguides/collection/analyticsjs/events#overview
+onclick="ga('send', 'event', 'Amazon Affiliate Link', 'Action label', 'Action Value');"
