@@ -125,7 +125,7 @@ GEM
     omniauth-steam (1.0.6)
       multi_json
       omniauth-openid
-    pg (1.1.3)
+    pg (0.21.0)
     rack (1.6.10)
     rack-openid (1.3.1)
       rack (>= 1.1.0)
@@ -241,7 +241,7 @@ DEPENDENCIES
   mini_magick
   newrelic_rpm
   omniauth-steam
-  pg (~> 1.0)
+  pg (~> 0.21)
   rails (= 4.2.8)
   rails_12factor
   responders (~> 2.0)

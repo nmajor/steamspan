@@ -4,7 +4,7 @@ ruby '2.4.2'
 gem 'steam-api'
 gem 'mechanize'
 gem 'rest-client'
-gem "pg", "~> 1.0" 
+gem 'pg', '~> 0.21'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'omniauth-steam'
