@@ -61,6 +61,9 @@ class MainController < ApplicationController
     rescue Steam::SteamError
       redirect_to span_path(:steam_id => steam_user)
       return
+    rescue Steam::JSONError => e
+      puts 'blah'
+      puts e.inspect
     end
     redirect_to span_path(:steam_id => steam_id)
   end

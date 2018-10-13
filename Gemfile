@@ -13,7 +13,7 @@ gem 'newrelic_rpm'
 gem 'bootstrap-sass', '~> 3.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.8'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -40,6 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 gem 'unicorn'
 gem 'foreman'
+gem 'meta-tags', :require => 'meta_tags'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -57,4 +58,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

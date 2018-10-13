@@ -1,4 +1,4 @@
-FROM ruby:2.2.0
+FROM ruby:2.4.2
 RUN apt-get update -qq
 RUN apt-get install -y build-essential curl git imagemagick libmagickwand-dev libcurl4-openssl-dev nodejs postgresql-client
 
@@ -23,4 +23,5 @@ ADD . $APP_HOME
 WORKDIR $APP_HOME
 RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 
-CMD ["foreman", "start"]
+# CMD ["foreman", "start"]
+CMD ["/bin/bash"]
