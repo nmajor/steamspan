@@ -241,7 +241,7 @@ DEPENDENCIES
   mini_magick
   newrelic_rpm
   omniauth-steam
-  pg
+  pg (~> 1.0)
   rails (= 4.2.8)
   rails_12factor
   responders (~> 2.0)
