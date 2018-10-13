@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.4.2'
 
 gem 'steam-api'
 gem 'mechanize'
@@ -40,7 +41,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 gem 'unicorn'
 gem 'foreman'
-gem 'meta-tags', :require => 'meta_tags'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
